@@ -1,0 +1,56 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --light-blue: #86bbd8;
+  --dark-blue: #336699;
+  --light-gray: #f5f5f5;
+}
+
+body {
+  background: var(--light-blue);
+}
+
+.viewheight {
+  min-height: 100vh;
+}
+
+.card {
+  border: none !important;
+  border-radius: 0.5rem !important;
+}
+
+.card-title {
+  background: var(--dark-blue);
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  color: var(--light-gray);
+}
+
+.input-group-text {
+  background: var(--dark-blue);
+  color: var(--light-gray);
+}
+
+.submitBtn {
+  background: var(--dark-blue);
+  color: var(--light-gray);
+  font-weight: 500;
+}
+
+.submitBtn:hover {
+  background: var(--light-blue);
+}
+
+.hidden {
+  display: none !important;
+}
+
+#x {
+  padding: 0.375rem 0.9065rem;
+}
