@@ -1,3 +1,4 @@
+/* Dom selectors */
 const billInput = document.getElementById('bill');
 const peopleInput = document.getElementById('people-amount');
 const serviceInput = document.getElementById('input-select');
@@ -5,9 +6,12 @@ const errorDom = document.getElementById('error-dom');
 const form = document.getElementById('form');
 const clearBtn = document.getElementById('clear');
 
+/* A variable that is later turned into a setTimeout */
 let timeOut;
 
+/* Dom & UI handler */
 class UI {
+  /* Make object values out of dom elements */
   constructor() {
     this.loader = document.getElementById('loader');
     this.result = document.getElementById('result');
@@ -18,6 +22,7 @@ class UI {
     this.zeroUsers = document.getElementById('zero-users');
     this.faultyService = document.getElementById('faulty-service');
   }
+  /* Initiate the render functionality */
   showLoader() {
     this.tipAmount.innerText = '';
     this.totalAmount.innerText = '';
@@ -57,17 +62,17 @@ class UI {
     const error = new Error();
     errorDom.classList.remove('hidden');
     if (error.billValue === '') {
-      this.blankBill.innerText = 'Bill Amount Cannot Be Blank';
+      this.blankBill.innerText = error.blankBillError;
     } else {
       this.blankBill.innerText = '';
     }
     if (error.peopleInput === '' || Number(error.peopleInput) <= 0) {
-      this.zeroUsers.innerText = 'Number Of Users Must Be Greater Than Zero';
+      this.zeroUsers.innerText = error.zeroUsersError;
     } else {
       this.zeroUsers.innerText = '';
     }
     if (error.serviceInput === 'Choose...') {
-      this.faultyService.innerText = 'You Must Select A Service';
+      this.faultyService.innerText = error.serviceError;
     } else {
       this.faultyService.innerText = '';
     }
@@ -92,6 +97,9 @@ class Error {
     this.billValue = billInput.value;
     this.peopleInput = peopleInput.value;
     this.serviceInput = serviceInput.value;
+    this.blankBillError = 'Bill Amount Cannot Be Blank';
+    this.zeroUsersError = 'Number Of Users Must Be Greater Than Zero';
+    this.serviceError = 'You Must Select A Service';
   }
 }
 
