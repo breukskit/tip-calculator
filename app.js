@@ -29,9 +29,9 @@ class UI {
     this.personAmount.innerText = '';
     this.result.classList.add('hidden');
     const bill = new Bill(
-      Number(document.getElementById('bill').value),
-      Number(document.getElementById('people-amount').value),
-      Number(document.getElementById('input-select').value)
+      Number(billInput.value),
+      Number(peopleInput.value),
+      Number(serviceInput.value)
     );
     this.clearInputFields();
     this.loader.classList.remove('hidden');
@@ -40,6 +40,7 @@ class UI {
       this.showResult(bill.amountToPay, bill.amountOfPeople, bill.serviceValue);
     }, 2000);
   }
+  /* Render results to the DOM */
   showResult(billValue, peopleAmount, servicePercent) {
     const tipAmount = billValue * servicePercent;
     const totalAmount = billValue + tipAmount;
@@ -52,12 +53,15 @@ class UI {
     )}`;
     this.result.classList.remove('hidden');
   }
+  /* Clear the result */
   clear() {
     this.result.classList.add('hidden');
   }
+  /* Clear the input fields */
   clearInputFields() {
     form.reset();
   }
+  /* Handle errors */
   showError() {
     const error = new Error();
     errorDom.classList.remove('hidden');
@@ -82,8 +86,10 @@ class UI {
   }
 }
 
+/* Instantiate ui object */
 const ui = new UI();
 
+/* Instantiate Bill object */
 class Bill {
   constructor(amountToPay, amountOfPeople, serviceValue) {
     this.amountToPay = amountToPay;
@@ -92,6 +98,7 @@ class Bill {
   }
 }
 
+/* Instantiate Error object */
 class Error {
   constructor() {
     this.billValue = billInput.value;
@@ -103,11 +110,13 @@ class Error {
   }
 }
 
+/* Run when no error */
 function handleSuccess() {
   errorDom.classList.add('hidden');
   ui.showLoader();
 }
 
+/* Run on submit */
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   if (
@@ -123,6 +132,7 @@ form.addEventListener('submit', (e) => {
   }
 });
 
+/* Eventlistener pointing to clear-result method */
 clearBtn.addEventListener('click', () => {
   ui.clear();
 });
